@@ -49,4 +49,14 @@ RUN conda env create -f environment.yml
 
 SHELL ["conda", "run", "-n", "python_env", "/bin/bash", "-c"]
 
-CMD ["conda", "run", "--no-capture-output", "-n", "python_env", "python", "-V"]
+RUN conda install -y -c conda-forge \
+        conda-build \
+        nodejs \
+        jupyterlab \
+        ipywidgets \
+        && conda clean -ya
+
+RUN python -m jupyter notebook --generate-config
+
+# CMD ["conda", "run", "--no-capture-output", "-n", "python_env", "python", "-V"]
+CMD ["cat", "~/.jupyter/jupyter_notebook_config.py"]
