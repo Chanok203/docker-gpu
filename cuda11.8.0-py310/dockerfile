@@ -50,4 +50,6 @@ RUN conda create -y --name python_env python=${python_version}
 
 SHELL ["conda", "run", "-n", "python_env", "/bin/bash", "-c"]
 
+RUN echo "${python_version}"
+
 CMD ["conda", "run", "--no-capture-output", "-n", "python_env", "python", "-V"]
