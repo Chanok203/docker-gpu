@@ -1,0 +1,52 @@
+ARG python_version=3.9
+
+FROM nvidia/cuda:11.0.3-cudnn8-devel-ubuntu20.04
+
+LABEL maintainer="cpathompatai@gmail.com"
+
+SHELL ["/bin/bash", "--login", "-c"]
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive TZ=Asia/Bangkok apt-get -y install tzdata
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        # build-essential \
+        # gcc \
+        # curl \
+        wget \
+        # git \
+        # ca-certificates \
+        # pkg-config \
+        # software-properties-common \
+        # unzip \
+        # links2 \
+        # nano \
+        # libgl1-mesa-glx \
+        # libegl1-mesa \
+        # libxrandr2 \
+        # libxrandr2 \
+        # libxss1 \
+        # libxcursor1 \
+        # libxcomposite1 \
+        # libasound2 \
+        # libxi6 \
+        # libxtst6 \
+        && apt-get clean \
+        && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /tmp
+
+RUN wget \
+    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+    && mkdir /root/.conda \
+    && bash Miniconda3-latest-Linux-x86_64.sh -b \
+    && rm -f Miniconda3-latest-Linux-x86_64.sh
+
+RUN conda env create --name python_env python=${python_version}
+
+RUN echo "conda activate python_env" >> ~/.bashrc
+
+SHELL ["/bin/bash", "--login", "-c"]
+
+RUN python -V
+
+CMD ["python", "-V"]
