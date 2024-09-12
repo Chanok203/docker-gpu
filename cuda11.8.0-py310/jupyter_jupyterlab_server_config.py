@@ -828,9 +828,7 @@ c = get_config()  #noqa
 
 ## Supply overrides for terminado. Currently only supports "shell_command".
 #  Default: {}
-c.ServerApp.terminado_settings = {
-    {'shell_command': ['/bin/bash']}
-}
+c.ServerApp.terminado_settings = {{'shell_command': ['/bin/bash', '--login', '-i']}}
 
 ## Set to False to disable terminals.
 #
