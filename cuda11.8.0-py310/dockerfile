@@ -43,12 +43,17 @@ RUN wget \
     && bash Miniconda3-latest-Linux-x86_64.sh -b \
     && rm -f Miniconda3-latest-Linux-x86_64.sh
 
-RUN conda create --name python_env python=${python_version}
+ENV PATH="/root/miniconda3/bin:${PATH}"
+ARG PATH="/root/miniconda3/bin:${PATH}"
 
-RUN echo "conda activate python_env" >> ~/.bashrc
+RUN conda --version
 
-SHELL ["/bin/bash", "--login", "-c"]
+# RUN conda create --name python_env python=${python_version}
 
-RUN python -V
+# RUN echo "conda activate python_env" >> ~/.bashrc
 
-CMD ["python", "-V"]
+# SHELL ["/bin/bash", "--login", "-c"]
+
+# RUN python -V
+
+# CMD ["python", "-V"]
