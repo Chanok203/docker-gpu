@@ -56,7 +56,7 @@ RUN conda install -y -c conda-forge \
         ipywidgets \
         && conda clean -ya
 
-RUN python -m jupyter notebook --generate-config
+RUN python -m jupyter-lab --generate-config
 
 # CMD ["conda", "run", "--no-capture-output", "-n", "python_env", "python", "-V"]
 CMD ["cat", "~/.jupyter/jupyter_notebook_config.py"]
