@@ -48,10 +48,6 @@ ARG PATH="/root/miniconda3/bin:${PATH}"
 
 RUN conda create -y --name python_env python=${python_version}
 
-RUN echo "conda activate python_env" >> ~/.bashrc
-
-SHELL ["/bin/bash", "--login", "-c"]
-
 SHELL ["conda", "run", "-n", "python_env", "/bin/bash", "-c"]
 
-CMD ["python", "-V"]
+CMD ["conda", "run", "--no-capture-output", "-n", "myenv", "python", "-V"]
