@@ -43,7 +43,7 @@ RUN wget \
     && bash Miniconda3-latest-Linux-x86_64.sh -b \
     && rm -f Miniconda3-latest-Linux-x86_64.sh
 
-RUN conda env create --name python_env python=${python_version}
+RUN conda create --name python_env python=${python_version}
 
 RUN echo "conda activate python_env" >> ~/.bashrc
 
