@@ -44,13 +44,11 @@ RUN wget \
 ENV PATH="/root/miniconda3/bin:${PATH}"
 ARG PATH="/root/miniconda3/bin:${PATH}"
 
-COPY environment.yml .
+# COPY environment.yml .
+# RUN conda env create -f environment.yml
 
-COPY environment.yml .
-RUN conda env create -f environment.yml
+RUN conda create -n python_env python3.10
 
 SHELL ["conda", "run", "-n", "python_env", "/bin/bash", "-c"]
-
-RUN echo "${python_version}"
 
 CMD ["conda", "run", "--no-capture-output", "-n", "python_env", "python", "-V"]
