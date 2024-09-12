@@ -47,7 +47,7 @@ ARG PATH="/root/miniconda3/bin:${PATH}"
 # COPY environment.yml .
 # RUN conda env create -f environment.yml
 
-RUN conda create -y -n python_env python3.10 -c conda-forge
+RUN conda create -y -n python_env python=3.10 -c conda-forge
 
 SHELL ["conda", "run", "-n", "python_env", "/bin/bash", "-c"]
 
