@@ -58,7 +58,6 @@ RUN conda install -y -c conda-forge \
 
 RUN python -m jupyterlab_server --generate-config
 
-ENV SHELL="/bin/bash"
 
 RUN mkdir /notebooks
 WORKDIR /notebooks
@@ -67,4 +66,5 @@ EXPOSE 8888
 EXPOSE 6006
 EXPOSE 80
 
+ENV SHELL="/bin/bash"
 CMD ["conda", "run", "--no-capture-output", "-n", "python_env", "python", "-m", "jupyter", "lab", "--port", "8888", "--ip", "0.0.0.0", "--no-browser", "--allow-root"]
