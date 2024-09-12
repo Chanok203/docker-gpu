@@ -58,7 +58,7 @@ RUN conda install -y -c conda-forge \
 
 RUN python -m jupyterlab_server --generate-config
 
-COPY jupyter_jupyterlab_server_config /root/.jupyter/
+COPY jupyter_jupyterlab_server_config.py /root/.jupyter/
 
 RUN mkdir /notebooks
 WORKDIR /notebooks
