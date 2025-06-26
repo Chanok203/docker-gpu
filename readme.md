@@ -10,7 +10,7 @@
 
 1. pull image from dockerhub
     ```bash
-    docker pull chanok203/ml:cuda11.8.0-py311
+    docker pull chanok203/ml:cuda12.8.1-py312
     ```
 
 1. create docker-compose.yml
